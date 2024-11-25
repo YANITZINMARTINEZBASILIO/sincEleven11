@@ -1,6 +1,6 @@
 {
-    "short_name": "BD11:11",
-    "name": "Database-11:11",
+    "short_name": "SincEleven11",
+    "name": "Sincronizacion-11:11",
     "id": "/index.html",
     "start_url": "/index.html",
     "display": "standalone",
@@ -9,21 +9,21 @@
     "display_override": [
         "window-controls-overlay"
     ],
-    "description": "PWA con Material Design que contiene una base de datos",
+    "description": "PWA utilizando Material Design con sincronización para trabajar sin conexión a internet",
     "screenshots": [
         {
             "src": "/img/screenshot_horizontal.png",
             "sizes": "2188x1328",
             "type": "image/png",
             "form_factor": "wide",
-            "label": "BD11:11"
+            "label": "SincEleven11"
         },
         {
             "src": "/img/screenshot_vertical.png",
             "sizes": "984x1390",
             "type": "image/png",
             "form_factor": "narrow",
-            "label": "BD11:11 (2)"
+            "label": "SincEleven11 (2)"
         }
     ],
     "icons": [
