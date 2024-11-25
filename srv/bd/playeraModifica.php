@@ -8,21 +8,24 @@ require_once __DIR__ . "/../modelo/validaId.php";
 
 /**
  * @param array{
- *    PLA_ID: string,
+ *   PLA_ID: string,
  *   PLA_NOM: string,
  *   PLA_TALLA: string,
  *   PLA_TELA: string,
- *   PLA_COLOR: string
+ *   PLA_COLOR: string,
  *  } $modelo
  */
 function playeraModifica(array $modelo)
 {
-    validaId($modelo[PLA_ID]);
-    validaNombre($modelo[PLA_NOM]);
-    update(
-        pdo: Bd::pdo(),
-        table: PLAYERA,
-        set: $modelo,
-        where: [PLA_ID => $modelo[PLA_ID]]
-    );
+ validaId($modelo[PLA_ID]);
+ validaNombre($modelo[PLA_NOM]);
+ validaTalla($modelo[PLA_TALLA]);
+ validaTela($modelo[PLA_TELA]);
+ validaColor($modelo[PLA_COLOR]);
+ update(
+  pdo: Bd::pdo(),
+  table: PLAYERA,
+  set: $modelo,
+  where: [PLA_ID => $modelo[PLA_ID]]
+ );
 }

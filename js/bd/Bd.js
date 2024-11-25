@@ -1,7 +1,10 @@
 export const ALMACEN_PLAYERA = "PLAYERA"
 export const PLA_ID = "PLA_ID"
 export const INDICE_NOMBRE = "INDICE_NOMBRE"
-export const PLA_NOMBRE = "PLA_NOMBRE"
+export const PLA_NOM = "PLA_NOM"
+export const PLA_TALLA = "PLA_TALLA"
+export const PLA_TELA = "PLA_TELA"
+export const PLA_COLOR = "PLA_COLOR"
 const BD_NOMBRE = "sincronizacion"
 const BD_VERSION = 1
 
@@ -32,8 +35,8 @@ export const Bd = new Promise((resolve, reject) => {
   const almacenPlayera =
    bd.createObjectStore(ALMACEN_PLAYERA, { keyPath: PLA_ID })
 
-  // Crea un índice ordenado por el campo "PLA_NOMBRE" que no acepta duplicados.
-  almacenPlayera.createIndex(INDICE_NOMBRE, "PLA_NOMBRE")
+  // Crea un índice ordenado por el campo "PLA_NOM" que no acepta duplicados.
+  almacenPlayera.createIndex(INDICE_NOMBRE, "PLA_NOM")
  }
 
 })

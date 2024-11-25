@@ -10,7 +10,7 @@ require_once __DIR__ . "/../modelo/TABLA_PLAYERA.php";
  *   PLA_NOM: string,
  *   PLA_TALLA: string,
  *   PLA_TELA: string,
- *   PLA_COLOR: string
+ *   PLA_COLOR: string,
  *  }
  */
 function playeraBusca(string $id): false|array

@@ -2,9 +2,8 @@
 <html lang="es" class="light dark">
 
 <head>
-
   <meta charset="UTF-8">
-  <title>Agregar - SincEleven11</title>
+  <title>Agregar - BD11:11</title>
 
   <script src="js/registraServiceWorker.js"></script>
 
@@ -18,21 +17,24 @@
   <link rel="stylesheet" href="css/transicion_pestanas.css">
   <script type="module" src="lib/js/submitForm.js"></script>
   <script type="module" src="lib/js/muestraError.js"></script>
- <script type="module" src="js/bd/playeraAgrega.js"></script>
+  <script type="module" src="js/bd/playeraAgrega.js"></script>
 
 </head>
 
-
 <body>
-  
-  <form id="forma" onsubmit="
-  event.preventDefault()
-  // Lee el nombre, quitándole los espacios al inicio y al final.
-  const PLA_NOM = forma.nombre.value.trim()
-  const modelo = { PLA_NOM }
-  playeraAgrega(modelo)
-   .then(json => location.href = 'index.html')
-   .catch(muestraError)">
+
+  <form id="forma" onsubmit="event.preventDefault(); 
+    // Lee los datos del formulario, eliminando los espacios al principio y al final
+    const PLA_NOM = forma.nombre.value.trim();
+    const PLA_TALLA = forma.talla.value.trim();
+    const PLA_TELA = forma.tela.value.trim();
+    const PLA_COLOR = forma.color.value.trim();
+    const modelo = { PLA_NOM, PLA_TALLA, PLA_TELA, PLA_COLOR };
+    
+    // Llama a la función playeraAgrega con el objeto modelo.
+    playeraAgrega(modelo)
+      .then(json => location.href = 'index.html') // Redirige al index después de agregar
+      .catch(muestraError);">
 
     <md-top-app-bar adicional="tab" headline="headline">
       <a href="index.html">
@@ -46,11 +48,10 @@
       </button>
     </md-top-app-bar>
 
-    <h1 id="headline">Agregar Playera </h1>
+    <h1 id="headline">Agregar Playera</h1>
     <nav-tab-fixed id="tab"></nav-tab-fixed>
+    
     <main>
-
-      <!-- <button class="md-outline-button"><a href="index.html">Cancelar</a></button> -->
       <p>
         <label class="md-filled-text-field">
           <input required placeholder="Nombre*" name="nombre">
@@ -59,38 +60,33 @@
         </label>
       </p>
       <p>
-
-      <p>
         <label class="md-filled-text-field">
           <input required placeholder="Talla*" name="talla">
-          <span>Talla de la playera*</span>
+          <span>Talla de la playera *</span>
           <small>Obligatorio</small>
         </label>
       </p>
-      <p>
-
       <p>
         <label class="md-filled-text-field">
           <input required placeholder="Tela*" name="tela">
-          <span>Tela de la playera*</span>
+          <span>Tela de la playera *</span>
           <small>Obligatorio</small>
         </label>
       </p>
-      <p>
-
       <p>
         <label class="md-filled-text-field">
           <input required placeholder="Color*" name="color">
-          <span>Color de la playera*</span>
+          <span>Color de la playera *</span>
           <small>Obligatorio</small>
         </label>
       </p>
-      <!-- <p>
-        <button class="md-filled-button" style="width: 100%;" type="submit">Agregar</button>
-      </p> -->
+
+      <!-- Cierra el formulario antes de cerrar main -->
     </main>
 
-    <nav-drw></nav-drw>
+  </form>
+
+  <nav-drw></nav-drw>
 
 </body>
 

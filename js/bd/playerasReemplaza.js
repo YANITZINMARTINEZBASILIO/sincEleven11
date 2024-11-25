@@ -2,7 +2,7 @@ import { bdEjecuta } from "../../lib/js/bdEjecuta.js"
 import { ALMACEN_PLAYERA, Bd } from "./Bd.js"
 
 /**
- * Borra el contenido del almacén PASATIEMPO y guarda nuevasplayeras.
+ * Borra el contenido del almacén PLAYERA y guarda nuevasplayeras.
  * @param {import("../modelo/PLAYERA.js").PLAYERA[]} nuevasplayeras
  */
 export async function playerasReemplaza(nuevasplayeras) {

@@ -3,7 +3,7 @@ import { exportaAHtml } from "../../lib/js/exportaAHtml.js"
 import { validaPlayera } from "../modelo/validaPlayera.js"
 import { ALMACEN_PLAYERA, Bd, INDICE_NOMBRE } from "./Bd.js"
 
-export async function playerasConsultaNoEliminados() {
+export async function playeraConsultaNoEliminados() {
 
  return bdConsulta(Bd, [ALMACEN_PLAYERA],
   /**
@@ -37,9 +37,7 @@ export async function playerasConsultaNoEliminados() {
      /* Si el cursor no vale null y hay más objetos, el siguiente se obtiene con
       *  cursor.value */
      const modelo = validaPlayera(cursor.value)
-     if (modelo.PLA_TALLA == "") {
       resultado.push(modelo)
-     }
      /* Busca el siguiente objeto de la consulta, que se recupera la siguiente
       * vez que se invoque la función onsuccess. */
      cursor.continue()
@@ -50,4 +48,4 @@ export async function playerasConsultaNoEliminados() {
 
 }
 
-exportaAHtml(playerasConsultaNoEliminados)
+exportaAHtml(playeraConsultaNoEliminados)

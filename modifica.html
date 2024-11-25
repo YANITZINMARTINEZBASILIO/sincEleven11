@@ -4,7 +4,7 @@
 <head>
 
   <meta charset="UTF-8">
-  <title>Modificar - SincEleven11</title>
+  <title>Modifica - BD11:11</title>
 
   <script src="js/registraServiceWorker.js"></script>
 
@@ -17,54 +17,70 @@
   <script type="module" src="js/configura.js"></script>
   <link rel="stylesheet" href="css/estilos.css">
   <link rel="stylesheet" href="css/transicion_pestanas.css">
-  <script type="module" src="lib/js/submitForm.js"></script>
-  <script type="module" src="lib/js/muestraError.js"></script>
   <script type="module" src="lib/js/consumeJson.js"></script>
   <script type="module" src="lib/js/muestraObjeto.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
   <script type="module" src="js/bd/playeraBusca.js"></script>
- <script type="module" src="js/bd/playeraElimina.js"></script>
- <script type="module" src="js/bd/playeraModifica.js"></script>
-
+  <script type="module" src="js/bd/playeraElimina.js"></script>
+  <script type="module" src="js/bd/playeraModifica.js"></script>
   <script>
-    // Obtiene los parámetros de la página.
-    const params = new URL(location.href).searchParams
 
-const paramId = parametros.get("id")
+    // Obtiene los parámetros de la página.
+    const parametros = new URL(location.href).searchParams
+
+    const paramId = parametros.get("id")
+
   </script>
 
 </head>
 
-<body onload="if (params.size > 0) {
-  consumeJson('srv/playera.php?' + params)
-   .then(respuesta => muestraObjeto(forma, respuesta.body))
-   .catch(muestraError)
- }">
+<body onload="if (paramId !== null) {
+   playeraBusca(paramId)
+    .then(playera => {
+     if (playera === undefined) throw new Error('playera no encontrado.')
+     muestraObjeto(forma, {
+              nombre: { value: playera.PLA_NOM },
+              talla: { value: playera.PLA_TALLA },
+              tela: { value: playera.PLA_TELA },
+              color: { value: playera.PLA_COLOR }
+            });
+          })
+    .catch(muestraError)
+  }">
 
+  <md-top-app-bar adicional="tab" headline="headline">
 
-  <form id="forma" onsubmit="submitForm('srv/playera-modifica.php', event)
-   .then(respuesta => location.href = 'index.html')
-   .catch(muestraError)">
-
-    <md-top-app-bar adicional="tab" headline="headline">
-
-      <a href="index.html">
-        <button class="md-standard-icon-button" type="button" title="Cancelar" slot="navigation">
-          <span class="material-symbols-outlined">cancel</span>
-        </button>
-      </a>
-      <button class="md-standard-icon-button" type="submit" title="Guardar" slot="action">
-        <span class="material-symbols-outlined">save</span>
+    <a href="index.html">
+      <button class="md-standard-icon-button" type="button" title="Cancelar" slot="navigation">
+        <span class="material-symbols-outlined">cancel</span>
       </button>
+    </a>
+    <button class="md-standard-icon-button" type="submit" title="Guardar" slot="action">
+      <span class="material-symbols-outlined">save</span>
+    </button>
 
-      <button is="md-overflow-button" slot="action" onclick="overflow.alterna(this)"></button>
+    <button is="md-overflow-button" slot="action" onclick="overflow.alterna(this)"></button>
 
-    </md-top-app-bar>
-    <h1 id="headline">Modificar datos</h1>
-    <nav-tab-fixed id="tab"></nav-tab-fixed>
+  </md-top-app-bar>
+  <h1 id="headline">Modificar datos</h1>
+  <nav-tab-fixed id="tab"></nav-tab-fixed>
 
+  <main>
+    <form id="forma" onsubmit="
+   event.preventDefault()
+   if (paramId !== null) {
+    const PLA_ID = paramId
+    // Lee el nombre, quitándole los espacios al inicio y al final.
+    const PLA_NOM = forma.nombre.value.trim()
+    const PLA_TALLA = forma.talla.value.trim()
+    const PLA_TELA = forma.tela.value.trim()
+    const PLA_COLOR = forma.color.value.trim()
+    const modelo = { PLA_ID, PLA_NOM, PLA_TALLA, PLA_TELA, PLA_COLOR }
+    playeraModifica(modelo)
+     .then(json => location.href = 'index.html')
+     .catch(muestraError)
+   }">
 
-    <main>
-      <!-- <button class="md-outline-button"><a href="index.html">Cancelar</a></button> -->
       <input name="id" type="hidden">
 
       <p>
@@ -74,7 +90,6 @@ const paramId = parametros.get("id")
           <small>Obligatorio</small>
         </label>
       </p>
-
       <p>
         <label class="md-filled-text-field">
           <input required value="Cargando&hellip;" name="talla">
@@ -96,13 +111,13 @@ const paramId = parametros.get("id")
           <small>Obligatorio</small>
         </label>
       </p>
-  </form>
+    </form>
   </main>
   <md-overflow-menu id="overflow">
 
     <button type="button" onclick="
-    if (params.size > 0 && confirm('Confirma la eliminación')) {
-     consumeJson('srv/playera-elimina.php?' + params)
+    if (paramId !== null && confirm('Confirma la eliminación')) {
+     pasatiempoElimina(paramId)
       .then(() => location.href = 'index.html')
       .catch(muestraError)
     }">

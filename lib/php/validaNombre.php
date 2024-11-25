@@ -25,8 +25,6 @@ function validaNombre(false|string $nombre)
   );
 
  return $trimNombre;
-
- 
 }
 
 function validaTalla(false|string $talla)
@@ -35,8 +33,8 @@ function validaTalla(false|string $talla)
  if ($talla === false)
   throw new ProblemDetails(
    status: BAD_REQUEST,
-   title: "Falta el talla.",
-   type: "/error/faltatalla.html",
+   title: "Falta la talla.",
+   type: "/error/faltanombre.html",
    detail: "La solicitud no tiene el valor de talla."
   );
 
@@ -46,12 +44,13 @@ function validaTalla(false|string $talla)
   throw new ProblemDetails(
    status: BAD_REQUEST,
    title: "Talla en blanco.",
-   type: "/error/tallaenblanco.html",
+   type: "/error/nombreenblanco.html",
    detail: "Pon texto en el campo talla.",
   );
 
  return $trimTalla;
 }
+
 
 function validaTela(false|string $tela)
 {
@@ -60,7 +59,7 @@ function validaTela(false|string $tela)
   throw new ProblemDetails(
    status: BAD_REQUEST,
    title: "Falta el tela.",
-   type: "/error/faltatela.html",
+   type: "/error/faltanombre.html",
    detail: "La solicitud no tiene el valor de tela."
   );
 
@@ -69,13 +68,14 @@ function validaTela(false|string $tela)
  if ($trimTela === "")
   throw new ProblemDetails(
    status: BAD_REQUEST,
-   title: "Tela en blanco.",
-   type: "/error/telaenblanco.html",
-   detail: "Pon texto en el campo nombre.",
+   title: "tela en blanco.",
+   type: "/error/nombreenblanco.html",
+   detail: "Pon texto en el campo tela.",
   );
 
  return $trimTela;
 }
+
 
 function validaColor(false|string $color)
 {
@@ -84,7 +84,7 @@ function validaColor(false|string $color)
   throw new ProblemDetails(
    status: BAD_REQUEST,
    title: "Falta el color.",
-   type: "/error/faltacolor.html",
+   type: "/error/faltanombre.html",
    detail: "La solicitud no tiene el valor de color."
   );
 
@@ -93,10 +93,11 @@ function validaColor(false|string $color)
  if ($trimColor === "")
   throw new ProblemDetails(
    status: BAD_REQUEST,
-   title: "Color en blanco.",
-   type: "/error/colorenblanco.html",
+   title: "color en blanco.",
+   type: "/error/nombreenblanco.html",
    detail: "Pon texto en el campo color.",
   );
 
  return $trimColor;
 }
+

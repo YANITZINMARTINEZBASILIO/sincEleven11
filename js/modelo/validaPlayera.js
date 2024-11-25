@@ -11,10 +11,10 @@ export function validaPlayera(objeto) {
   throw new Error("El nombre debe ser texto.")
 
  if (typeof objeto.PLA_TALLA !== "string")
-  throw new Error("La talla debe ser numeros y comas.")
+    throw new Error("La talla debe ser texto.")
 
  if (typeof objeto.PLA_TELA !== "string")
-    throw new Error("La tela debe ser texto.")
+    throw new Error("La Tela debe ser texto.")
 
  if (typeof objeto.PLA_COLOR !== "string")
     throw new Error("El color debe ser texto.")

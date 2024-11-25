@@ -10,8 +10,7 @@ export async function playeraBusca(id) {
 
  return bdConsulta(Bd, [ALMACEN_PLAYERA],
   /**
-   * @param {(resultado: import("../modelo/PLAYERA.js").PLAYERA|undefined)
-   *                                                            => any} resolve 
+   * @param {(resultado: import("../modelo/PLAYERA.js").PLAYERA|undefined) => any} resolve 
    */
   (transaccion, resolve) => {
 
@@ -25,19 +24,25 @@ export async function playeraBusca(id) {
      *  consulta.result
      * Si el objeto no se encuentra se recupera undefined. */
     const objeto = consulta.result
-    if (objeto !== undefined) {
-     const modelo = validaPlayera(objeto)
-     if (modelo.PLA_ID === "") {
-      resolve(modelo)
-      return
-     }
-    }
-    resolve(undefined)
 
+    // Si el objeto es undefined, no se encuentra en la base de datos.
+    if (objeto !== undefined) {
+      // Validar el objeto para asegurarse de que tiene las propiedades necesarias.
+      const modelo = validaPlayera(objeto)
+
+      // Verificar si el modelo tiene las propiedades esperadas (ajusta la validación si es necesario).
+      if (modelo && modelo.PLA_NOM && modelo.PLA_TALLA && modelo.PLA_TELA && modelo.PLA_COLOR) {
+        resolve(modelo) // Si todo está bien, se resuelve el modelo.
+        return
+      }
+    }
+
+    // Si el objeto no cumple las condiciones o no fue encontrado, resuelve con undefined.
+    resolve(undefined)
    }
 
   })
-
 }
 
+// Exporta la función de búsqueda de playera a HTML
 exportaAHtml(playeraBusca)
