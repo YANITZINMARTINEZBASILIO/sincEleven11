@@ -37,12 +37,15 @@ export async function playeraConsultaNoEliminados() {
      /* Si el cursor no vale null y hay más objetos, el siguiente se obtiene con
       *  cursor.value */
      const modelo = validaPlayera(cursor.value)
+     if (modelo.PLA_ELIMINADO === 0) {
       resultado.push(modelo)
+     }
      /* Busca el siguiente objeto de la consulta, que se recupera la siguiente
       * vez que se invoque la función onsuccess. */
      cursor.continue()
     }
    }
+
 
   })
 

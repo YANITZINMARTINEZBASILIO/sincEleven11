@@ -15,6 +15,8 @@ export async function playeraAgrega(modelo) {
  validaTalla(modelo.PLA_TALLA)
  validaTela(modelo.PLA_TELA)
  validaColor(modelo.PLA_COLOR)
+ modelo.PLA_MODIFICACION = Date.now()
+ modelo.PLA_ELIMINADO = 0
  // Genera id único en internet.
  modelo.PLA_ID = creaIdCliente(Date.now().toString())
  return bdEjecuta(Bd, [ALMACEN_PLAYERA], transaccion => {

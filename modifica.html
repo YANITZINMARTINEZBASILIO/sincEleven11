@@ -48,23 +48,6 @@
     .catch(muestraError)
   }">
 
-  <md-top-app-bar adicional="tab" headline="headline">
-
-    <a href="index.html">
-      <button class="md-standard-icon-button" type="button" title="Cancelar" slot="navigation">
-        <span class="material-symbols-outlined">cancel</span>
-      </button>
-    </a>
-    <button class="md-standard-icon-button" type="submit" title="Guardar" slot="action">
-      <span class="material-symbols-outlined">save</span>
-    </button>
-
-    <button is="md-overflow-button" slot="action" onclick="overflow.alterna(this)"></button>
-
-  </md-top-app-bar>
-  <h1 id="headline">Modificar datos</h1>
-  <nav-tab-fixed id="tab"></nav-tab-fixed>
-
   <main>
     <form id="forma" onsubmit="
    event.preventDefault()
@@ -80,6 +63,23 @@
      .then(json => location.href = 'index.html')
      .catch(muestraError)
    }">
+
+      <md-top-app-bar adicional="tab" headline="headline">
+
+        <a href="index.html">
+          <button class="md-standard-icon-button" type="button" title="Cancelar" slot="navigation">
+            <span class="material-symbols-outlined">cancel</span>
+          </button>
+        </a>
+        <button class="md-standard-icon-button" type="submit" title="Guardar" slot="action">
+          <span class="material-symbols-outlined">save</span>
+        </button>
+
+        <button is="md-overflow-button" slot="action" onclick="overflow.alterna(this)"></button>
+
+      </md-top-app-bar>
+      <h1 id="headline">Modificar datos</h1>
+      <nav-tab-fixed id="tab"></nav-tab-fixed>
 
       <input name="id" type="hidden">
 

@@ -18,24 +18,18 @@ export async function playeraModifica(modelo) {
   validaTela(modelo.PLA_TELA);
   validaColor(modelo.PLA_COLOR);
 
-  // Verifica que PLA_ID esté presente
-  if (modelo.PLA_ID === undefined) {
-    throw new Error(`Falta PLA_ID de ${modelo.PLA_NOM}.`);
-  }
-  validaId(modelo.PLA_ID);
-
-  // Buscar la playera antes de modificarla
-  const anterior = await playeraBusca(modelo.PLA_ID);
-
-  if (anterior !== undefined) {
-    // Aquí solo actualizamos los campos principales de la playera
+  if (modelo.PLA_ID === undefined)
+    throw new Error(`Falta PLA_ID de ${modelo.PLA_NOM}.`)
+   validaId(modelo.PLA_ID)
+   const anterior = await playeraBusca(modelo.PLA_ID)
+   if (anterior !== undefined) {
+    modelo.PLA_MODIFICACION = Date.now()
+    modelo.PLA_ELIMINADO = 0
     return bdEjecuta(Bd, [ALMACEN_PLAYERA], transaccion => {
-      const almacenPlayera = transaccion.objectStore(ALMACEN_PLAYERA);
-      almacenPlayera.put(modelo);  // Actualiza la playera en la base de datos
-    });
-  } else {
-    throw new Error(`Playera no encontrada con ID: ${modelo.PLA_ID}`);
-  }
+     const almacenPlayera = transaccion.objectStore(ALMACEN_PLAYERA)
+     almacenPlayera.put(modelo)
+    })
+   }
 }
 
 // Exporta la función a HTML para su uso

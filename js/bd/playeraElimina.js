@@ -10,12 +10,14 @@ export async function playeraElimina(id) {
   const modelo = await playeraBusca(id)
 
   if (modelo !== undefined) {
-    // Elimina el objeto completamente de la base de datos utilizando el ID.
+    modelo.PLA_MODIFICACION = Date.now()
+    modelo.PLA_ELIMINADO = 1
     return bdEjecuta(Bd, [ALMACEN_PLAYERA], transaccion => {
-      const almacenPlayera = transaccion.objectStore(ALMACEN_PLAYERA)
-      almacenPlayera.delete(id)  // Elimina el objeto por su ID.
+     const almacenPlayera = transaccion.objectStore(ALMACEN_PLAYERA)
+     almacenPlayera.put(modelo)
     })
-  }
+   }
+
 }
 
 exportaAHtml(playeraElimina)

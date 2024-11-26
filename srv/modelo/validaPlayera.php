@@ -49,12 +49,28 @@ if (!isset($objeto->PLA_COLOR) || !is_string($objeto->PLA_COLOR))
      type: "/error/nombreincorrecto.html"
  );
 
+ if (!isset($objeto->PLA_MODIFICACION)  || !is_int($objeto->PLA_MODIFICACION))
+ throw new ProblemDetails(
+  status: BAD_REQUEST,
+  title: "La modificacion debe ser número.",
+  type: "/error/modificacionincorrecta.html",
+ );
+
+ if (!isset($objeto->PLA_ELIMINADO) || !is_int($objeto->PLA_ELIMINADO))
+ throw new ProblemDetails(
+  status: BAD_REQUEST,
+  title: "El campo eliminado debe ser entero.",
+  type: "/error/eliminadoincorrecto.html",
+ );
+
 // Si todas las validaciones son correctas, retornamos los valores del objeto.
 return [
  PLA_ID => $objeto->PLA_ID,
  PLA_NOM => $objeto->PLA_NOM,
  PLA_TALLA => $objeto->PLA_TALLA,
  PLA_TELA => $objeto->PLA_TELA,
- PLA_COLOR => $objeto->PLA_COLOR
+ PLA_COLOR => $objeto->PLA_COLOR,
+ PLA_MODIFICACION => $objeto->PLA_MODIFICACION,
+ PLA_ELIMINADO => $objeto->PLA_ELIMINADO
 ];
 }
