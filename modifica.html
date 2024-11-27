@@ -4,7 +4,7 @@
 <head>
 
   <meta charset="UTF-8">
-  <title>Modifica - BD11:11</title>
+  <title>Modifica - SincEleven11</title>
 
   <script src="js/registraServiceWorker.js"></script>
 
@@ -48,8 +48,9 @@
     .catch(muestraError)
   }">
 
-  <main>
-    <form id="forma" onsubmit="
+
+
+  <form id="forma" onsubmit="
    event.preventDefault()
    if (paramId !== null) {
     const PLA_ID = paramId
@@ -64,23 +65,25 @@
      .catch(muestraError)
    }">
 
-      <md-top-app-bar adicional="tab" headline="headline">
+    <md-top-app-bar adicional="tab" headline="headline">
 
-        <a href="index.html">
-          <button class="md-standard-icon-button" type="button" title="Cancelar" slot="navigation">
-            <span class="material-symbols-outlined">cancel</span>
-          </button>
-        </a>
-        <button class="md-standard-icon-button" type="submit" title="Guardar" slot="action">
-          <span class="material-symbols-outlined">save</span>
+      <a href="index.html">
+        <button class="md-standard-icon-button" type="button" title="Cancelar" slot="navigation">
+          <span class="material-symbols-outlined">cancel</span>
         </button>
+      </a>
+      <button class="md-standard-icon-button" type="submit" title="Guardar" slot="action">
+        <span class="material-symbols-outlined">save</span>
+      </button>
 
-        <button is="md-overflow-button" slot="action" onclick="overflow.alterna(this)"></button>
+      <button is="md-overflow-button" slot="action" onclick="overflow.alterna(this)"></button>
 
-      </md-top-app-bar>
-      <h1 id="headline">Modificar datos</h1>
-      <nav-tab-fixed id="tab"></nav-tab-fixed>
+    </md-top-app-bar>
+    <h1 id="headline">Modificar datos</h1>
+    <nav-tab-fixed id="tab"></nav-tab-fixed>
 
+
+    <main>
       <input name="id" type="hidden">
 
       <p>
@@ -111,13 +114,14 @@
           <small>Obligatorio</small>
         </label>
       </p>
-    </form>
-  </main>
+    </main>
+  </form>
+ 
   <md-overflow-menu id="overflow">
 
     <button type="button" onclick="
     if (paramId !== null && confirm('Confirma la eliminación')) {
-     pasatiempoElimina(paramId)
+     playeraElimina(paramId)
       .then(() => location.href = 'index.html')
       .catch(muestraError)
     }">
